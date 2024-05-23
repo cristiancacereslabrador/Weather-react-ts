@@ -1,0 +1,33 @@
+.container h2,
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.container {
+  background-color: var(--white);
+  background-color: rgb(255, 255, 255, 0.5);
+  color: #000;
+  border-radius: 1rem;
+  text-align: center;
+  padding: 1rem;
+  box-shadow: 2px 2px 4px rgb(216, 205, 205);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.current {
+  font-size: 6rem;
+  font-weight: 900;
+  margin: 0;
+}
+
+.temperatures {
+  display: flex;
+  justify-content: space-between;
+}
+
+.temperatures p {
+  font-weight: 900;
+}
+.temperatures span {
+  font-weight: 400;
+}

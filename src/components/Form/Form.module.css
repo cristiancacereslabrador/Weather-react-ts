@@ -1,0 +1,76 @@
+.form,
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-transform: uppercase; /* Convierte el texto a mayúsculas */
+  font-weight: bold; /* Hace que la fuente sea gruesa (bold) */
+  letter-spacing: 8px; /* Ajusta el espaciado entre las letras */
+  margin-bottom: 0px;
+}
+
+.form input[type="text"],
+.form select {
+  text-align: center;
+  padding: 1rem;
+  /* background-color: transparent; */
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 0.3rem solid var(--white);
+  color: var(--white);
+  font-size: 1.8rem;
+  font-weight: 400;
+  border-radius: 1rem;
+  /* box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); offsetX, offsetY, blurRadius, color */
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  /* text-shadow: 1px 1px 2px rgba(235, 208, 135, 0.8); */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+
+  /* border: 1px solid #ccc; */
+}
+
+.field ::placeholder {
+  color: var(--white);
+}
+
+.submit {
+  font-family: "Yatra One", system-ui;
+  background-color: var(--primary);
+  border: none;
+  /* color: var(--white); */
+  font-weight: 800;
+  font-size: 2rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Agregamos sombra */
+  transition: background-color 1s, box-shadow 1s; /* Eliminamos transform de aquí */
+  text-shadow: 1px 1px 2px rgba(235, 208, 135, 0.8);
+  letter-spacing: 8px;
+  margin-top: 2rem;
+  text-shadow: 1px 1px 2px rgba(177, 177, 249, 0.867); /* Sombra más sutil */
+  color: rgb(13, 13, 128);
+}
+
+.submit:hover {
+  /* background-color: lighten(
+    var(--primary),
+    10%
+  );  Hacemos el color un 10% más claro */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4); /* Ajustamos la sombra al colocar el cursor sobre él */
+}
+
+.submit:active {
+  transition: transform 0.1s; /* Hacemos la transición de transform más rápida */
+  transform: translateY(2px) translateZ(-8px);
+}
+.title {
+  /* text-align: center; */
+  font-size: 2rem;
+  font-weight: 800;
+  margin-top: 5rem;
+  text-shadow: 1px 1px 2px rgba(177, 177, 249, 0.867); /* Sombra más sutil */
+  color: rgb(13, 13, 128);
+  margin-bottom: 0;
+  margin-top: 0;
+}
