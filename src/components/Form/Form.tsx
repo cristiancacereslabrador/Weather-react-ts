@@ -11,7 +11,7 @@ type FormProps = {
 
 export default function Form({ fetchWeather, setNotFound }: FormProps) {
   const [search, setSearch] = useState<SearchType>({
-    city: "San Cristobal",
+    city: "San Cristóbal",
     country: "VE",
   });
   const [alert, setAlert] = useState("");
