@@ -51,8 +51,8 @@ const images = [
   w19,
   w20,
 ];
-
-const duration = 3000;
+const duration = 2500; // Duración de cada transición en milisegundos
+const initialBackgroundDuration = 4000; // Duración del fondo inicial en milisegundos
 
 const BackgroundSlider = styled.div`
   position: fixed;
@@ -63,26 +63,27 @@ const BackgroundSlider = styled.div`
   background-size: cover;
   background-position: center;
   z-index: -1;
-  transition: background-image 1s ease-in-out;
+  transition: background-image ${duration / 1000}s ease-in;
 `;
-
-const preloadImages = (imageArray: string[]): void => {
-  imageArray.forEach((imageSrc: string) => {
-    const img = new Image();
-    img.src = imageSrc;
-  });
-};
 
 const App = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [showInitialBackground, setShowInitialBackground] = useState(true);
 
   useEffect(() => {
-    preloadImages(images);
     const interval = setInterval(() => {
       setCurrentImage((prevImage) => (prevImage + 1) % images.length);
     }, duration);
 
-    return () => clearInterval(interval);
+    // Después de 5 segundos, ocultar el fondo inicial
+    const initialBackgroundTimeout = setTimeout(() => {
+      setShowInitialBackground(false);
+    }, initialBackgroundDuration);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(initialBackgroundTimeout);
+    };
   }, []);
 
   const {
@@ -96,8 +97,12 @@ const App = () => {
 
   return (
     <>
+      {showInitialBackground && <div className="initial-background" />}
       <BackgroundSlider
-        style={{ backgroundImage: `url(${images[currentImage]})` }}
+        style={{
+          backgroundImage: `url(${images[currentImage]})`,
+          transition: showInitialBackground ? "none" : undefined, // Evitar la transición inicial
+        }}
       />
       <h1 className={styles.title}>Weather Search</h1>
       <div className={styles.container}>
