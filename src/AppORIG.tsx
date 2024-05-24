@@ -66,25 +66,30 @@ const BackgroundSlider = styled.div`
   transition: background-image 1s ease-in-out;
 `;
 
-const preloadImages = (imageArray: string[]): void => {
-  imageArray.forEach((imageSrc: string) => {
-    const img = new Image();
-    img.src = imageSrc;
-  });
-};
+// const AppContent = styled.div`
+//   position: relative;
+//   z-index: 1;
+//   color: white;
+//   padding: 20px;
+// `;
 
 const App = () => {
   const [currentImage, setCurrentImage] = useState(0);
 
+  // console.log("import.meta.env", import.meta.env.VITE_API_KEY);
+
   useEffect(() => {
-    preloadImages(images);
     const interval = setInterval(() => {
       setCurrentImage((prevImage) => (prevImage + 1) % images.length);
     }, duration);
 
     return () => clearInterval(interval);
   }, []);
+  // useEffect(() => {
+  //   setCurrentImage(0);
+  // }, []);
 
+  // const { weather, loading, notFound, fetchWeather, hasWeatherData } = useWeather(); //MOD
   const {
     weather,
     loading,
@@ -93,17 +98,19 @@ const App = () => {
     setNotFound,
     hasWeatherData,
   } = useWeather();
-
   return (
     <>
+      {/* <BackgroundSlider style={{ backgroundImage: `url(${w0})` }} />{" "} */}
       <BackgroundSlider
         style={{ backgroundImage: `url(${images[currentImage]})` }}
-      />
+      />{" "}
       <h1 className={styles.title}>Weather Search</h1>
+      {/* <Spinner /> */}
       <div className={styles.container}>
         <Form fetchWeather={fetchWeather} setNotFound={setNotFound} />
         {loading && <Spinner />}
-        {hasWeatherData && <WeatherDetail weather={weather} />}
+        {/* <Spinner /> */}
+        {hasWeatherData && <WeatherDetail weather={weather}></WeatherDetail>}
         {notFound && <Alert>City not found!</Alert>}
       </div>
     </>
