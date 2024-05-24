@@ -6,9 +6,10 @@ import Alert from "../Alert/Alert";
 
 type FormProps = {
   fetchWeather: (search: SearchType) => Promise<void>;
+  setNotFound: (value: boolean) => void;
 };
 
-export default function Form({ fetchWeather }: FormProps) {
+export default function Form({ fetchWeather, setNotFound }: FormProps) {
   const [search, setSearch] = useState<SearchType>({
     city: "San Cristobal",
     country: "VE",
@@ -34,6 +35,7 @@ export default function Form({ fetchWeather }: FormProps) {
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    setNotFound(false); //MOD
     e.preventDefault();
     if (Object.values(search).includes("")) {
       setAlert("Todos los campos son obligatorios");

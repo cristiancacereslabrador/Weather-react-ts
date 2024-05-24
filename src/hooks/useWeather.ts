@@ -123,7 +123,7 @@ export default function useWeather() {
       // console.log("weatherResult", weatherResult);
       if (result.success) {
         setWeather(result.data);
-        console.log("result", result);
+        // console.log("result", result);
         setNotFound(false);
       } else {
         setNotFound(true);

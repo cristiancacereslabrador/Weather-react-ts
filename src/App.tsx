@@ -89,8 +89,15 @@ const App = () => {
   //   setCurrentImage(0);
   // }, []);
 
-  const { weather, loading, notFound, fetchWeather, hasWeatherData } =
-    useWeather();
+  // const { weather, loading, notFound, fetchWeather, hasWeatherData } = useWeather(); //MOD
+  const {
+    weather,
+    loading,
+    notFound,
+    fetchWeather,
+    setNotFound,
+    hasWeatherData,
+  } = useWeather();
   return (
     <>
       {/* <BackgroundSlider style={{ backgroundImage: `url(${w0})` }} />{" "} */}
@@ -100,7 +107,7 @@ const App = () => {
       <h1 className={styles.title}>Weather Search</h1>
       {/* <Spinner /> */}
       <div className={styles.container}>
-        <Form fetchWeather={fetchWeather} />
+        <Form fetchWeather={fetchWeather} setNotFound={setNotFound} />
         {loading && <Spinner />}
         {/* <Spinner /> */}
         {hasWeatherData && <WeatherDetail weather={weather}></WeatherDetail>}
