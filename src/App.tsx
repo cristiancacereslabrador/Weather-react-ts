@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
 import w0 from "../src/img/w0.jpg";
 import w1 from "../src/img/w1.jpg";
 import w2 from "../src/img/w2.jpg";
@@ -27,6 +25,7 @@ import useWeather from "./hooks/useWeather";
 import WeatherDetail from "./components/WeatherDetail/WeatherDetail";
 import Spinner from "./components/Spinner/Spinner";
 import Alert from "./components/Alert/Alert";
+import BackgroundSlider from "react-background-slider";
 
 const images = [
   w0,
@@ -51,41 +50,8 @@ const images = [
   w19,
   w20,
 ];
-const duration = 2500; // Duración de cada transición en milisegundos
-const initialBackgroundDuration = 4000; // Duración del fondo inicial en milisegundos
-
-const BackgroundSlider = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  z-index: -1;
-  transition: background-image ${duration / 1000}s ease-in;
-`;
 
 const App = () => {
-  const [currentImage, setCurrentImage] = useState(0);
-  const [showInitialBackground, setShowInitialBackground] = useState(true);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prevImage) => (prevImage + 1) % images.length);
-    }, duration);
-
-    // Después de 5 segundos, ocultar el fondo inicial
-    const initialBackgroundTimeout = setTimeout(() => {
-      setShowInitialBackground(false);
-    }, initialBackgroundDuration);
-
-    return () => {
-      clearInterval(interval);
-      clearTimeout(initialBackgroundTimeout);
-    };
-  }, []);
-
   const {
     weather,
     loading,
@@ -97,18 +63,18 @@ const App = () => {
 
   return (
     <>
-      {showInitialBackground && <div className="initial-background" />}
       <BackgroundSlider
-        style={{
-          backgroundImage: `url(${images[currentImage]})`,
-          transition: showInitialBackground ? "none" : undefined, // Evitar la transición inicial
-        }}
+        images={images}
+        duration={2} // Duración de cada imagen en milisegundos
+        transition={1} // Duración de la transición entre imágenes en segundos
       />
       <h1 className={styles.title}>Weather Search</h1>
+      {/* <Spinner /> */}
       <div className={styles.container}>
         <Form fetchWeather={fetchWeather} setNotFound={setNotFound} />
         {loading && <Spinner />}
-        {hasWeatherData && <WeatherDetail weather={weather} />}
+        {/* <Spinner /> */}
+        {hasWeatherData && <WeatherDetail weather={weather}></WeatherDetail>}
         {notFound && <Alert>City not found!</Alert>}
       </div>
     </>

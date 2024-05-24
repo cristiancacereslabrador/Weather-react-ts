@@ -63,7 +63,7 @@ const BackgroundSlider = styled.div`
   background-size: cover;
   background-position: center;
   z-index: -1;
-  transition: background-image 1s ease-in-out;
+  transition: background-image;
 `;
 
 // const AppContent = styled.div`
